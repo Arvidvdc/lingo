@@ -27,3 +27,6 @@ Spelverloop
 
 Aanvullende ideeen
 - Er moet de mogelijkheid geboden worden om te kiezen tussen 1 of 2 spelers.
+
+![LingoOmslag_a](https://user-images.githubusercontent.com/56016997/67531925-cc1d3580-f6c4-11e9-93c1-4ebfe5d26881.png)
+![LingoOmslag_b](https://user-images.githubusercontent.com/56016997/67531926-cc1d3580-f6c4-11e9-96ed-8d26ac3f02db.png)
