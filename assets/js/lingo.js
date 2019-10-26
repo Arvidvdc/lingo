@@ -1,45 +1,63 @@
-//variabelen defineren
-var gekozenWoord = ["A","B","C","D","E"];
-var opgegevenWoord = [];
-var arrayWoorden = ["Water","Woord","Groen","Jacht","Graaf","Fiets","Trein","Wagen","Boord","Braam","Vrouw","Nooit","Groot","Brood","Drank","Braaf","Draag","Liefde","Paars","Waard","Plaag","Paard","Baard","Drugs","Bende","Zwart","Schot","Schop","Bench","Trouw","Ander","Check"]
+// Variabelen defineren
+var arrayWoorden = [
+    "Water","Woord","Groen","Jacht","Graaf","Fiets","Trein","Wagen","Boord","Braam","Vrouw","Nooit","Groot","Brood","Drank","Braaf","Draag","Liefde","Paars",
+    "Waard","Plaag","Paard","Baard","Drugs","Bende","Zwart","Schot","Schop","Bench","Trouw","Ander","Check","Graat","Graan"
+];
+var gekozenWoord = [];
+//Kiezen willekeurig woord
+var tijdelijkWoord = woordKiezer();
 
-// Bij laden van de pagina direct focus naar eerste input element.
+for(var i=0;i<tijdelijkWoord.length;i++){
+    gekozenWoord.push(tijdelijkWoord.split("")[i].toUpperCase());
+}
+console.log("Gekozen woord: "+gekozenWoord);
+
+// Bij laden van de pagina
+// Direct focus naar eerste input element.
 document.getElementsByTagName("input")[0].focus();
 
-//eventlistners
-
-//controle letter
+//Controle letter
 document.getElementById("ctrlLetter").addEventListener("click",function(){
-    // letters naar array
+    // Gekozen letters naar array
+    var opgegevenWoord = [];
     for(i=0;i<5;i++) {
         opgegevenWoord.push(document.getElementsByTagName("input")[i].value.toUpperCase());
     };
 
-    // woord contoleren
+    // Woord contoleren
     for(i=0;i<5;i++){
-        if(opgegevenWoord[i]!=gekozenWoord[i]){
-            // // Als letter in woord, dan class toekennen anders niets doen
-            // console.log(gekozenWoord)
-            // if(gekozenWoord.indexOf(opgegevenWoord[i]==-1)){
-            //     console.log("Letter NIET in het woord.");
-            //     document.getElementsByTagName("input")[i].classList.add("letterNormaal");
-            // } else {
-            //     console.log("Letter in het woord.");
-            //     document.getElementsByTagName("input")[i].classList.add("letterInWoord");
-            // }
-        } else if(opgegevenWoord[i]==gekozenWoord[i]){
-            // letter in woord
-            console.log("Letter op de juiste plaats.");
+        var opgegevenLetter = opgegevenWoord[i]
+        if(opgegevenLetter != gekozenWoord[i]){
+            // Letter niet overeenkomend. Verdere controle
+            for(var j=1;j<5;j++) {
+                console.log("i= " +i +" - " +"j= " +j);
+                console.log(opgegevenLetter +" - " +gekozenWoord[j]);
+                // console.log("Letter in het woord.");
+                if(opgegevenLetter == gekozenWoord[j]) {
+                    // Letter wel in het woord, niet de juiste plaats
+                    document.getElementsByTagName("input")[i].classList.add("letterInWoord");
+                    // Letter wel in het woord maar letter reeds goed gegeven: gekozenWoord=groen / opgegevenWoord= grEep (1e E)
+                    // Letter wel in het woord maar letter komt vaker voor: gekozenWoord=woord / opgegevenWoord= bOten
+                } else {
+                    // Letter niet in het woord
+                    document.getElementsByTagName("input")[i].classList.add("letterNormaal");
+                };
+                
+            };
+        } else if(opgegevenLetter == gekozenWoord[i]){
+            // Letter op de juiste plaats
             document.getElementsByTagName("input")[i].classList.add("letterGoed");
-        } else {
-            // letter op de juiste plaats
-            console/log("ELSE")
         };
     };
 });
 
-// naar de tweede letter gaan.
+// Naar de volgende letter gaan.
 $("input").keyup(function () {
     var index = $(this).index("input");		 	
     $("input:eq(" + (index +1) + ")").focus(); 
  });
+
+ //Random word generator for Hangman
+function woordKiezer()  {
+    return arrayWoorden[Math.floor(Math.random()*arrayWoorden.length)];
+}
