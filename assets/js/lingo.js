@@ -4,25 +4,24 @@ var arrayWoorden = [
     "Waard","Plaag","Paard","Baard","Drugs","Bende","Zwart","Schot","Schop","Bench","Trouw","Ander","Check","Graat","Graan"
 ],
     gekozenWoord = [];
-
+    
 //Kiezen willekeurig woord
 var tijdelijkWoord = woordKiezer(); //Standaard routine
 // var tijdelijkWoord="woord" //Alternatieve routine voor testen
 for(var i=0;i<tijdelijkWoord.length;i++){
     gekozenWoord.push(tijdelijkWoord.split("")[i].toUpperCase());
 }
+
 // Eerste letter toevoegen aan speelbord
 document.getElementsByTagName("input")[0].value=gekozenWoord[0];
+
 // Toepassen css op eerste letter
 document.getElementsByTagName("input")[0].classList.add("letterGoed");
+
 //Focus naar volgende invoer element
 document.getElementsByTagName("input")[1].focus();
 
-// Eventlistener(s) opgeven
-
-
 // Woord controleren
-// document.getElementById("ctrlLetter").addEventListener("click",function()
 function controleWoord(){
     // Gekozen letters naar array
     var ingevoerdWoord = [];
@@ -36,9 +35,6 @@ function controleWoord(){
         if(ingevoerdeLetter != gekozenWoord[i]){
             // Letter niet overeenkomend. Verdere controle
             for(var j=1;j<5;j++) {
-                console.log("i= " +i +" - " +"j= " +j);
-                console.log(ingevoerdeLetter +" - " +gekozenWoord[j]);
-                // console.log("Letter in het woord.");
                 if(ingevoerdeLetter == gekozenWoord[j]) {
                     // Letter wel in het woord, niet de juiste plaats
                     document.getElementsByTagName("input")[i].classList.add("letterInWoord");
@@ -68,13 +64,11 @@ function woordKiezer()  {
 };
 
 // Toetsenbord
-function addLetter(){
+function letterInvoeren(str){
     var arrayElements=document.getElementsByTagName("input");
     for(var i=0;i<5;i++){
         if(arrayElements[i].value.length === 0){
-            // var letterGeklikt=this;
-            console.log(letterGeklikt);
-            document.getElementsByTagName("input")[i].value=letterGeklikt;
+            document.getElementsByTagName("input")[i].value=str;
             return false;
         };
     };
