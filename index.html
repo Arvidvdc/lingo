@@ -8,16 +8,15 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets\css\lingo.css">
 </head>
-<body>
-    
 
+<body>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12 align-self-center text-center">
                 <h1>LINGO</h1>
             </div>
         </div>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center"> <!-- Speelbord-->
             <div class="col-md-12 align-self-center text-center">
                 <input class="letterNormaal" type="text" maxlength="1">
                 <input class="letterNormaal" type="text" maxlength="1">
@@ -26,23 +25,37 @@
                 <input class="letterNormaal" type="text" maxlength="1">
             </div>
         </div>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center"> <!-- Getrokken ballen -->
+            <div class="col-align-items-start"><div class="bal"></div></div>
+            <div class="col-align-items-start"><div class="bal"></div></div>
+            <div class="col-align-items-start"><div class="bal"></div></div>
+            <div class="col-align-items-start"><div class="balfiller"></div></div>
+            <div class="col-align-items-end"><div class="balFiller"></div></div>
+            <div class="col-align-items-end"><div class="bal"></div></div>
+            <div class="col-align-items-end"><div class="bal"></div></div>
+            <div class="col-align-items-end"><div class="bal"></div></div>
+        </div>
+        <div class="row justify-content-center"> <!-- Controle knop -->
             <div class="col-md-12 align-self-center text-center">
                 <button id="ctrlLetter" onclick="controleWoord();">Controle letter</button>
             </div>
         </div>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center"> <!-- Toetsenbord-->
             <div class="col-md-12 align-self-center text-center">
                 <button onclick="letterInvoeren('Q');">Q</button><button onclick="letterInvoeren('W');">W</button><button onclick="letterInvoeren('E');">E</button><button onclick="letterInvoeren('R');">R</button><button onclick="letterInvoeren('T');">T</button><button onclick="letterInvoeren('Y');">Y</button><button onclick="letterInvoeren('U');">U</button><button onclick="letterInvoeren('I');">I</button><button onclick="letterInvoeren('O');">O</button><button onclick="letterInvoeren('P');">P</button>
             </div>
+        </div>
+        <div class="row justify-content-center">
             <div class="col-md-12 align-self-center text-center">
                 <button onclick="letterInvoeren('A');">A</button><button onclick="letterInvoeren('S');">S</button><button onclick="letterInvoeren('D');">D</button><button onclick="letterInvoeren('F');">F</button><button onclick="letterInvoeren('G');">G</button><button onclick="letterInvoeren('H');">H</button><button onclick="letterInvoeren('J');">J</button><button onclick="letterInvoeren('K');">K</button><button onclick="letterInvoeren('L');">L</button>
             </div>
+        </div>
+        <div class="row justify-content-center">
             <div class="col-md-12 align-self-center text-center">
                 <button onclick="letterInvoeren('Z');">Z</button><button onclick="letterInvoeren('X');">X</button><button onclick="letterInvoeren('C');">C</button><button onclick="letterInvoeren('V');">V</button><button onclick="letterInvoeren('B');">B</button><button onclick="letterInvoeren('N');">N</button><button onclick="letterInvoeren('M');">M</button>
             </div>
         </div>
-    </div><!-- container -->
+    </div>
 
     <script type="text/javascript" src="assets\js\lib\jquery-3.4.1.js"></script>
     <script src="assets\js\lingo.js"></script>

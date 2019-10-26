@@ -3,12 +3,15 @@
 }
 
 body {
-    font-size: 24pt;
+    font-size: 18pt;
     font-weight: bold;
 }
 
 input {
     text-transform: uppercase;
+    text-align: center;
+    width: 40px;
+    margin: 10px 10px;
 }
 
 .input:focus {
@@ -32,4 +35,31 @@ input {
     background: yellow;
     color:black;
     border-radius: 50%;
+}
+
+.bal {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+	padding: 0;
+}
+
+.balFiller {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+	padding: 0;
+}
+
+.balRood {
+    background: red;
+}
+
+.balGroen {
+    background: greenyellow;
+}
+
+#ctrlLetter {
+    margin-top: 10px;
 }

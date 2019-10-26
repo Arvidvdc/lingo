@@ -1,7 +1,7 @@
 // Variabelen defineren
 var arrayWoorden = [
     "Water","Woord","Groen","Jacht","Graaf","Fiets","Trein","Wagen","Boord","Braam","Vrouw","Nooit","Groot","Brood","Drank","Braaf","Draag","Liefde","Paars",
-    "Waard","Plaag","Paard","Baard","Drugs","Bende","Zwart","Schot","Schop","Bench","Trouw","Ander","Check","Graat","Graan"
+    "Waard","Plaag","Paard","Baard","Drugs","Bende","Zwart","Schot","Schop","Bench","Trouw","Ander","Check","Graat","Graan","Zucht","Tabak"
 ],
     gekozenWoord = [];
     
@@ -73,9 +73,9 @@ function letterInvoeren(str){
             return false;
         };
     };
-}
+};
 
 function verwijderClasses(num) {
     document.getElementsByTagName("input")[num].classList.remove("letterInWoord");
     document.getElementsByTagName("input")[num].classList.remove("letterGoed");
-}
+};
