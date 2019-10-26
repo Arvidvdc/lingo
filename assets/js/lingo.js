@@ -4,17 +4,15 @@ var arrayWoorden = [
     "Waard","Plaag","Paard","Baard","Drugs","Bende","Zwart","Schot","Schop","Bench","Trouw","Ander","Check","Graat","Graan"
 ];
 var gekozenWoord = [];
+
 //Kiezen willekeurig woord
 var tijdelijkWoord = woordKiezer();
-
 for(var i=0;i<tijdelijkWoord.length;i++){
     gekozenWoord.push(tijdelijkWoord.split("")[i].toUpperCase());
 }
+document.getElementsByTagName("input")[0].value=gekozenWoord[0];
+document.getElementsByTagName("input")[1].focus();
 console.log("Gekozen woord: "+gekozenWoord);
-
-// Bij laden van de pagina
-// Direct focus naar eerste input element.
-document.getElementsByTagName("input")[0].focus();
 
 //Controle letter
 document.getElementById("ctrlLetter").addEventListener("click",function(){
