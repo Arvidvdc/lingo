@@ -32,6 +32,7 @@ function controleWoord(){
     // Contole loop
     for(i=0;i<5;i++){
         var ingevoerdeLetter = ingevoerdWoord[i]
+        verwijderClasses(i); // Dank je Thirza voor het vinden van de bug!!!
         if(ingevoerdeLetter != gekozenWoord[i]){
             // Letter niet overeenkomend. Verdere controle
             for(var j=1;j<5;j++) {
@@ -72,4 +73,9 @@ function letterInvoeren(str){
             return false;
         };
     };
+}
+
+function verwijderClasses(num) {
+    document.getElementsByTagName("input")[num].classList.remove("letterInWoord");
+    document.getElementsByTagName("input")[num].classList.remove("letterGoed");
 }
