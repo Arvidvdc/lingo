@@ -18,15 +18,15 @@ document.getElementById("ctrlLetter").addEventListener("click",function(){
     // woord contoleren
     for(i=0;i<5;i++){
         if(opgegevenWoord[i]!=gekozenWoord[i]){
-            // Als letter in woord, dan class toekennen anders niets doen
-            console.log(gekozenWoord)
-            if(gekozenWoord.indexOf(opgegevenWoord[i]==-1)){
-                console.log("Letter NIET in het woord.");
-                document.getElementsByTagName("input")[i].classList.add("letterNormaal");
-            } else {
-                console.log("Letter in het woord.");
-                document.getElementsByTagName("input")[i].classList.add("letterInWoord");
-            }
+            // // Als letter in woord, dan class toekennen anders niets doen
+            // console.log(gekozenWoord)
+            // if(gekozenWoord.indexOf(opgegevenWoord[i]==-1)){
+            //     console.log("Letter NIET in het woord.");
+            //     document.getElementsByTagName("input")[i].classList.add("letterNormaal");
+            // } else {
+            //     console.log("Letter in het woord.");
+            //     document.getElementsByTagName("input")[i].classList.add("letterInWoord");
+            // }
         } else if(opgegevenWoord[i]==gekozenWoord[i]){
             // letter in woord
             console.log("Letter op de juiste plaats.");
@@ -39,6 +39,7 @@ document.getElementById("ctrlLetter").addEventListener("click",function(){
 });
 
 // naar de tweede letter gaan.
-document.getElementsByTagName("input")[0].addEventListener("input",function(){
-    document.getElementsByTagName("input")[1].focus();
-});
+$("input").keyup(function () {
+    var index = $(this).index("input");		 	
+    $("input:eq(" + (index +1) + ")").focus(); 
+ });
