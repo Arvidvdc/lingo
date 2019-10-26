@@ -7,6 +7,10 @@ body {
     font-weight: bold;
 }
 
+.container {
+    border: 1px solid black;
+}
+
 input {
     text-transform: uppercase;
     text-align: center;
@@ -61,5 +65,9 @@ input {
 }
 
 #ctrlLetter {
-    margin-top: 10px;
+    margin: 10px 0;
+}
+
+#correctie {
+    margin-left: 15px;
 }
