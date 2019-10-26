@@ -20,8 +20,10 @@ document.getElementsByTagName("input")[1].focus();
 
 // Eventlistener(s) opgeven
 
+
 // Woord controleren
-document.getElementById("ctrlLetter").addEventListener("click",function(){
+// document.getElementById("ctrlLetter").addEventListener("click",function()
+function controleWoord(){
     // Gekozen letters naar array
     var ingevoerdWoord = [];
     for(i=0;i<5;i++) {
@@ -52,7 +54,7 @@ document.getElementById("ctrlLetter").addEventListener("click",function(){
             document.getElementsByTagName("input")[i].classList.add("letterGoed");
         };
     };
-});
+};
 
 // Naar de volgende letter gaan.
 $("input").keyup(function () {
@@ -66,12 +68,14 @@ function woordKiezer()  {
 };
 
 // Toetsenbord
-document.getElementById("letterQ").addEventListener("click",function(){
+function addLetter(){
     var arrayElements=document.getElementsByTagName("input");
     for(var i=0;i<5;i++){
         if(arrayElements[i].value.length === 0){
-            document.getElementsByTagName("input")[i].value="Q";
-            return false
+            // var letterGeklikt=this;
+            console.log(letterGeklikt);
+            document.getElementsByTagName("input")[i].value=letterGeklikt;
+            return false;
         };
     };
-});
+}
