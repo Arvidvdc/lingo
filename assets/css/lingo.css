@@ -5,10 +5,7 @@
 body {
     font-size: 18pt;
     font-weight: bold;
-}
-
-.container {
-    border: 1px solid black;
+    background: var(--lingo-bg-color);
 }
 
 input {
