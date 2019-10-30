@@ -3,7 +3,8 @@ var arrayWoorden = [
     "Ander","Abuis","Baard","Bench","Bende","Boord","Braaf","Braam","Brood","Check","Drank","Draag","Drugs","Faalt","Fabel","Fiets","Files","Graaf","Graan","Graat","Groen","Groot","Hallo",
     "Hecht","Jacht","Jemig","Nooit","Paard","Paars","Plaag","Quota","Schop","Schot","Tabak","Trein","Trouw","Vrouw","Waard","Wagen","Water","Woord","Zagen","Zomer","Zucht","Zwart"
 ],
-    gekozenWoord = [];
+    gekozenWoord = [],
+    invoerPositie = 1;
     
 //Kiezen willekeurig woord
 var tijdelijkWoord = woordKiezer(); //Standaard routine
@@ -19,7 +20,7 @@ document.getElementsByTagName("input")[0].value=gekozenWoord[0];
 document.getElementsByTagName("input")[0].classList.add("letterGoed");
 
 //Focus naar volgende invoer element
-document.getElementsByTagName("input")[1].focus();
+document.getElementsByTagName("input")[invoerPositie].focus();
 
 // Woord controleren
 function controleWoord(){
@@ -56,7 +57,8 @@ function controleWoord(){
 // Naar de volgende letter gaan.
 $("input").keyup(function () {
     var index = $(this).index("input");		 	
-    $("input:eq(" + (index +1) + ")").focus(); 
+    $("input:eq(" + (invoerPositie +1) + ")").focus();
+    invoerPositie ++
  });
 
  //Random word generator for Hangman
@@ -66,13 +68,8 @@ function woordKiezer()  {
 
 // Toetsenbord
 function letterInvoeren(str){
-    var arrayElements=document.getElementsByTagName("input");
-    for(var i=0;i<5;i++){
-        if(arrayElements[i].value.length === 0){
-            document.getElementsByTagName("input")[i].value=str;
-            return false;
-        };
-    };
+    document.getElementsByTagName("input")[invoerPositie].value=str;
+    invoerPositie ++
 };
 
 function verwijderClasses(num) {
