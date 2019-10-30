@@ -43,7 +43,7 @@ function controleWoord(){
                     // Letter wel in het woord maar letter komt vaker voor: gekozenWoord=woord / ingevoerdWoord= bOten ?????
                 } else {
                     // Letter niet in het woord
-                    document.getElementsByTagName("input")[i].classList.add("letterNormaal");
+                    document.getElementsByTagName("input")[i].classList.add("letterFout");
                 };
             };
         } else if(ingevoerdeLetter == gekozenWoord[i]){
@@ -78,4 +78,5 @@ function letterInvoeren(str){
 function verwijderClasses(num) {
     document.getElementsByTagName("input")[num].classList.remove("letterInWoord");
     document.getElementsByTagName("input")[num].classList.remove("letterGoed");
+    document.getElementsByTagName("input")[num].classList.remove("letterFout");
 };

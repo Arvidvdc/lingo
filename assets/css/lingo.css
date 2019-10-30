@@ -32,6 +32,11 @@ input {
     border-radius: 25%;
 }
 
+.letterFout {
+    background: red;
+    color:white;
+}
+
 .letterInWoord  {
     background: yellow;
     color:black;
