@@ -6,7 +6,7 @@ var arrayWoorden = [
     gekozenWoord = [], // Woord om te raden
     invoerPositie = 1, // Bijhouden welk invoerveld actief is
     maximalePogingen = 1, // Maximaal aantal beurten voor het raden van het woord
-    aantalPogingen = 1; // Aantal pogingen bijhouden
+    aantalPogingen = 1, // Aantal pogingen bijhouden
     lettersGoed = 0; // Aantal letters goed
 
     
