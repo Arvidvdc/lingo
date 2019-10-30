@@ -35,7 +35,7 @@ function controleWoord(){
     };
 
     // Contole loop
-    var lettersGoed = 0;
+    lettersGoed = 0;
     for(i=0;i<5;i++){
         var ingevoerdeLetter = ingevoerdWoord[i];
         verwijderClasses(i); // Dank je Thirza voor het vinden van de bug!!!
