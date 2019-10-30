@@ -58,7 +58,7 @@ function controleWoord(){
 $("input").keyup(function () {
     var index = $(this).index("input");		 	
     $("input:eq(" + (invoerPositie +1) + ")").focus();
-    invoerPositie ++
+    invoerPositie ++;
  });
 
  //Random word generator for Hangman
@@ -69,7 +69,12 @@ function woordKiezer()  {
 // Toetsenbord
 function letterInvoeren(str){
     document.getElementsByTagName("input")[invoerPositie].value=str;
-    invoerPositie ++
+    invoerPositie ++;
+};
+
+function letterCorrectie() {
+    document.getElementsByTagName("input")[invoerPositie - 1].value="";
+    invoerPositie --;
 };
 
 function verwijderClasses(num) {
