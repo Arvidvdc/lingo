@@ -3,8 +3,10 @@ var arrayWoorden = [
     "Ander","Abuis","Baard","Bench","Bende","Boord","Braaf","Braam","Brood","Check","Drank","Draag","Drugs","Faalt","Fabel","Fiets","Files","Graaf","Graan","Graat","Groen","Groot","Hallo",
     "Hecht","Jacht","Jemig","Nooit","Paard","Paars","Plaag","Quota","Schop","Schot","Tabak","Trein","Trouw","Vrouw","Waard","Wagen","Water","Woord","Zagen","Zomer","Zucht","Zwart"
 ],
-    gekozenWoord = [],
-    invoerPositie = 1;
+    gekozenWoord = [], // Woord om te raden
+    invoerPositie = 1, // Bijhouden welk invoerveld actief is
+    maximalePogingen = 1, // Maximaal aantal beurten voor het raden van het woord
+    aantalPogingen = 1; // Aantal pogingen bijhouden
     
 //Kiezen willekeurig woord
 var tijdelijkWoord = woordKiezer(); //Standaard routine
@@ -31,15 +33,16 @@ function controleWoord(){
     };
 
     // Contole loop
+    var lettersGoed = 0;
     for(i=0;i<5;i++){
-        var ingevoerdeLetter = ingevoerdWoord[i]
+        var ingevoerdeLetter = ingevoerdWoord[i];
         verwijderClasses(i); // Dank je Thirza voor het vinden van de bug!!!
         if(ingevoerdeLetter != gekozenWoord[i]){
             // Letter niet overeenkomend. Verdere controle
             for(var j=1;j<5;j++) {
                 if(ingevoerdeLetter == gekozenWoord[j]) {
                     // Letter wel in het woord, niet de juiste plaats
-                    document.getElementsByTagName("input")[i].classList.add("letterInWoord");
+                    Document.getElementsByTagName("input")[i].classList.add("letterInWoord");
                     // Letter wel in het woord maar letter reeds goed gegeven: gekozenWoord=groen / ingevoerdWoord= grEep (1e E)
                     // Letter wel in het woord maar letter komt vaker voor: gekozenWoord=woord / ingevoerdWoord= bOten ?????
                 } else {
@@ -50,6 +53,16 @@ function controleWoord(){
         } else if(ingevoerdeLetter == gekozenWoord[i]){
             // Letter op de juiste plaats
             document.getElementsByTagName("input")[i].classList.add("letterGoed");
+            lettersGoed ++
+        };
+    };
+    if(aantalPogingen=maximalePogingen) {
+        if(lettersGoed<5){
+            document.getElementById("resultaat").innerText="Helaas het juiste woord is " + tijdelijkWoord.toUpperCase();
+            console.log(lettersGoed);
+        } else {
+            document.getElementById("resultaat").innerText="Perfect u heeft het woord geraden!";
+            console.log(lettersGoed);
         };
     };
 };
