@@ -69,12 +69,6 @@ function woordKiezer()  {
     // Bronvermelding Marten Blaauw's Galgje (https://github.com/mcblaauw/Galgje)
 };
 
-// Toetsenbord
-function letterInvoeren(str){
-    document.getElementsByTagName("input")[invoerPositie].value=str;
-    invoerPositie ++;
-};
-
 function letterCorrectie() {
     document.getElementsByTagName("input")[invoerPositie - 1].value="";
     invoerPositie --;
