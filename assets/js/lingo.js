@@ -63,9 +63,10 @@ $("input").keyup(function () {
     invoerPositie ++;
  });
 
- //Random word generator for Hangman
+ // Woordkiezer uit de array
 function woordKiezer()  {
     return arrayWoorden[Math.floor(Math.random()*arrayWoorden.length)];
+    // Bronvermelding Marten Blaauw's Galgje (https://github.com/mcblaauw/Galgje)
 };
 
 // Toetsenbord
