@@ -53,6 +53,7 @@ function controleWoord(){
         } else {
             document.getElementById("resultaat").innerText="Perfect u heeft het woord geraden!";
         };
+        document.getElementById("reload").disabled=false;
     };
 };
 
