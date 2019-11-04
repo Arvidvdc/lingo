@@ -5,7 +5,7 @@ var arrayWoorden = [
 ],
     gekozenWoord = [], // Woord om te raden
     invoerPositie = 1, // Bijhouden welk invoerveld actief is
-    maximalePogingen = 1, // Maximaal aantal beurten voor het raden van het woord
+    maximalePogingen = 5, // Maximaal aantal beurten voor het raden van het woord
     aantalPogingen = 1, // Aantal pogingen bijhouden
     lettersGoed = 0; // Aantal letters goed
 
@@ -13,25 +13,26 @@ var arrayWoorden = [
 //Kiezen willekeurig woord
 var tijdelijkWoord = woordKiezer(); //Standaard routine
 // var tijdelijkWoord="woord" //Alternatieve routine voor testen
+
 for(var i=0;i<tijdelijkWoord.length;i++){
     gekozenWoord.push(tijdelijkWoord.split("")[i].toUpperCase());
-}
+};
 
 // Eerste letter toevoegen aan speelbord
-document.getElementsByTagName("input")[0].value=gekozenWoord[0];
+document.getElementsByClassName("huidigeInvoer")[0].value=gekozenWoord[0];
 
 // Toepassen css op eerste letter
-document.getElementsByTagName("input")[0].classList.add("letterGoed");
+document.getElementsByClassName("huidigeInvoer")[0].classList.add("letterGoed");
 
 //Focus naar volgende invoer element
-document.getElementsByTagName("input")[invoerPositie].focus();
+document.getElementsByClassName("huidigeInvoer")[invoerPositie].focus();
 
 // Woord controleren
 function controleWoord(){
     // Gekozen letters naar array
     var ingevoerdWoord = [];
     for(i=0;i<5;i++) {
-        ingevoerdWoord.push(document.getElementsByTagName("input")[i].value.toUpperCase());
+        ingevoerdWoord.push(document.getElementsByClassName("huidigeInvoer")[i].value.toUpperCase());
     };
 
     // Contole loop
@@ -46,13 +47,18 @@ function controleWoord(){
             letterFout(i);
         };
     };
+
     // Controle aantal speelbeurten
-    if(aantalPogingen=maximalePogingen) {
-        if(lettersGoed<5){
-            document.getElementById("resultaat").innerText="Helaas het juiste woord is " + tijdelijkWoord.toUpperCase();
+    if(lettersGoed<5){
+        if(aantalPogingen<maximalePogingen) {
+            nieuweBeurt();
+            aantalPogingen++;
         } else {
-            document.getElementById("resultaat").innerText="Perfect u heeft het woord geraden!";
-        };
+            document.getElementById("resultaat").innerText="Helaas het juiste woord is " + tijdelijkWoord.toUpperCase();
+            document.getElementById("reload").disabled=false;
+        }
+    } else {
+        document.getElementById("resultaat").innerText="Perfect u heeft het woord geraden!";
         document.getElementById("reload").disabled=false;
     };
 };
@@ -60,9 +66,10 @@ function controleWoord(){
 // Naar de volgende letter gaan.
 $("input").keyup(function () {
     var index = $(this).index("input");		 	
-    $("input:eq(" + (invoerPositie +1) + ")").focus();
-    invoerPositie ++;
+    $("input:eq(" + (index +1) + ")").focus();
+    invoerPositie=index+1
  });
+
 
  // Woordkiezer uit de array
 function woordKiezer()  {
@@ -71,21 +78,56 @@ function woordKiezer()  {
 };
 
 function letterCorrectie() {
-    document.getElementsByTagName("input")[invoerPositie - 1].value="";
+    document.getElementsByClassName("huidigeInvoer")[ invoerPositie- 1].value="";
+    $("input:eq(" + (invoerPositie - 1) + ")").focus();
     invoerPositie --;
 };
 
 function verwijderClasses(num) {
-    document.getElementsByTagName("input")[num].classList.remove("letterInWoord");
-    document.getElementsByTagName("input")[num].classList.remove("letterGoed");
-    document.getElementsByTagName("input")[num].classList.remove("letterFout");
+    document.getElementsByClassName("huidigeInvoer")[num].classList.remove("letterInWoord");
+    document.getElementsByClassName("huidigeInvoer")[num].classList.remove("letterGoed");
+    document.getElementsByClassName("huidigeInvoer")[num].classList.remove("letterFout");
 };
 
 function letterGoed(positie) {
-    document.getElementsByTagName("input")[positie].classList.add("letterGoed");
+    document.getElementsByClassName("huidigeInvoer")[positie].classList.add("letterGoed");
     lettersGoed ++;
 };
 
 function letterFout(positie) {
-    document.getElementsByTagName("input")[positie].classList.add("letterFout");
+    document.getElementsByClassName("huidigeInvoer")[positie].classList.add("letterFout");
 };
+
+function nieuweBeurt() {
+    // Rij en kolommen opmaken
+    let row = document.createElement("div");
+    let colom = document.createElement("div")
+    row.classList.add("justify-content-center");
+    colom.classList.add("col-md-12", "align-self-center", "text-center");
+    
+    // Letters overzetten
+    for(var i=0;i<5;i++){
+        let oudeBeurt=document.createElement('input');
+        let actieveLetter=document.getElementsByClassName("huidigeInvoer")[i]
+        oudeBeurt.classList.add("letterNormaal");
+        oudeBeurt.disabled=true;
+        oudeBeurt.maxLength=1;
+        oudeBeurt.type="text";
+        oudeBeurt.value=actieveLetter.value;
+        oudeBeurt.classList=actieveLetter.classList;
+        oudeBeurt.classList.remove("huidigeInvoer");
+        colom.appendChild(oudeBeurt);
+        row.appendChild(colom);
+        if(actieveLetter.classList.contains("letterGoed")==false){
+            verwijderClasses(i);
+            actieveLetter.value="";
+            actieveLetter.classList.add("letterNormaal")
+        };
+    };
+
+    // Nieuwe div toevoegen
+    document.getElementById("speelbord").appendChild(row);
+    
+    // Naar de juiste invoer gaan
+    document.getElementsByClassName("huidigeInvoer")[1].focus();
+}
