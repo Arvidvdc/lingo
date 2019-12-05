@@ -1,35 +1,34 @@
-// Variabelen defineren
+// Definining variables
 var arrayWoorden = [
     "Ander","Abuis","Baard","Bench","Bende","Boord","Braaf","Braam","Brood","Check","Drank","Draag","Drugs","Faalt","Fabel","Fiets","Files","Graaf","Graan","Graat","Groen","Groot","Hallo",
     "Hecht","Jacht","Jemig","Nooit","Paard","Paars","Plaag","Quota","Schop","Schot","Tabak","Trein","Trouw","Vrouw","Waard","Wagen","Water","Woord","Zagen","Zomer","Zucht","Zwart"
 ],
-    gekozenWoord = [], // Woord om te raden
-    invoerPositie = 1, // Bijhouden welk invoerveld actief is
-    maximalePogingen = 5, // Maximaal aantal beurten voor het raden van het woord
-    aantalPogingen = 1, // Aantal pogingen bijhouden
-    lettersGoed = 0; // Aantal letters goed
+    gekozenWoord = [], // Word that should be guessed
+    invoerPositie = 1, // Keeping track wich input is active
+    maximalePogingen = 5, // Maximum attempts
+    aantalPogingen = 1, // Keeping count of attempts
+    lettersGoed = 0; // Number of letters right
 
     
-//Kiezen willekeurig woord
-var tijdelijkWoord = woordKiezer(); //Standaard routine
-// var tijdelijkWoord="woord" //Alternatieve routine voor testen
+//Choosing random word
+var tijdelijkWoord = woordKiezer(); 
 
 for(var i=0;i<tijdelijkWoord.length;i++){
     gekozenWoord.push(tijdelijkWoord.split("")[i].toUpperCase());
 };
 
-// Eerste letter toevoegen aan speelbord
+// Adding first letter to playing field
 document.getElementsByClassName("huidigeInvoer")[0].value=gekozenWoord[0];
 
-// Toepassen css op eerste letter
+// Assign css to first letter
 document.getElementsByClassName("huidigeInvoer")[0].classList.add("letterGoed");
 
-//Focus naar volgende invoer element
+//Focus to next element
 document.getElementsByClassName("huidigeInvoer")[invoerPositie].focus();
 
-// Woord controleren
+// Checkeing word
 function controleWoord(){
-    // Gekozen letters naar array
+    // Chosen letters to array
     var ingevoerdWoord = [];
     for(i=0;i<5;i++) {
         ingevoerdWoord.push(document.getElementsByClassName("huidigeInvoer")[i].value.toUpperCase());
@@ -39,16 +38,15 @@ function controleWoord(){
     lettersGoed = 0;
     for(i=0;i<5;i++){
         var ingevoerdeLetter = ingevoerdWoord[i];
-        verwijderClasses(i); // Dank je Thirza voor het vinden van de bug!!!
+        verwijderClasses(i); // Removing classes, thanks Thirza for finding the bug!!!
         if(ingevoerdeLetter == gekozenWoord[i]){
             letterGoed(i);
         } else {
-            // Letter op de juiste plaats
             letterFout(i);
         };
     };
 
-    // Controle aantal speelbeurten
+    // Control loop number of attempts
     if(lettersGoed<5){
         if(aantalPogingen<maximalePogingen) {
             nieuweBeurt();
@@ -63,7 +61,7 @@ function controleWoord(){
     };
 };
 
-// Naar de volgende letter gaan.
+// Goto next letter
 $("input").keyup(function () {
     var index = $(this).index("input");		 	
     $("input:eq(" + (index +1) + ")").focus().select();
@@ -71,10 +69,10 @@ $("input").keyup(function () {
  });
 
 
- // Woordkiezer uit de array
+ // choosing letter from array
 function woordKiezer()  {
     return arrayWoorden[Math.floor(Math.random()*arrayWoorden.length)];
-    // Bronvermelding Marten Blaauw's Galgje (https://github.com/mcblaauw/Galgje)
+    // Scource: Marten Blaauw's Galgje (https://github.com/mcblaauw/Galgje)
 };
 
 function letterCorrectie() {
@@ -99,13 +97,13 @@ function letterFout(positie) {
 };
 
 function nieuweBeurt() {
-    // Rij en kolommen opmaken
+    // Building row and colums
     let row = document.createElement("div");
     let colom = document.createElement("div")
     row.classList.add("justify-content-center");
     colom.classList.add("col-md-12", "align-self-center", "text-center");
     
-    // Letters overzetten
+    // Transfer letters
     for(var i=0;i<5;i++){
         let oudeBeurt=document.createElement('input');
         let actieveLetter=document.getElementsByClassName("huidigeInvoer")[i]
@@ -125,9 +123,9 @@ function nieuweBeurt() {
         };
     };
 
-    // Nieuwe div toevoegen
+    // Adding new div
     document.getElementById("speelbord").appendChild(row);
     
-    // Naar de juiste invoer gaan
+    // Goto correct input
     document.getElementsByClassName("huidigeInvoer")[1].focus().select();
 }
