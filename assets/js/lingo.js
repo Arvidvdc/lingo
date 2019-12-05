@@ -66,7 +66,7 @@ function controleWoord(){
 // Naar de volgende letter gaan.
 $("input").keyup(function () {
     var index = $(this).index("input");		 	
-    $("input:eq(" + (index +1) + ")").focus();
+    $("input:eq(" + (index +1) + ")").focus().select();
     invoerPositie=index+1
  });
 
@@ -79,7 +79,7 @@ function woordKiezer()  {
 
 function letterCorrectie() {
     document.getElementsByClassName("huidigeInvoer")[ invoerPositie- 1].value="";
-    $("input:eq(" + (invoerPositie - 1) + ")").focus();
+    $("input:eq(" + (invoerPositie - 1) + ")").focus().select();
     invoerPositie --;
 };
 
@@ -129,5 +129,5 @@ function nieuweBeurt() {
     document.getElementById("speelbord").appendChild(row);
     
     // Naar de juiste invoer gaan
-    document.getElementsByClassName("huidigeInvoer")[1].focus();
+    document.getElementsByClassName("huidigeInvoer")[1].focus().select();
 }
